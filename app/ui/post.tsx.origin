@@ -1,0 +1,34 @@
+//'use client';
+
+import Link from 'next/link';
+import styles from '@/app/utils/post.module.css';
+//import { posts } from '@/app/lib/placeholder-data';
+import { fetchPost, fetchAuthor } from '@/app/lib/data';
+//import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
+
+//const postList = [ ...posts, ...posts, ...posts];
+
+export default async function Post() {
+//  const router = useRouter();
+  const postList = await fetchPost();
+  //const postAuthor = await fetchAuthor();
+
+  return (
+  <>
+
+    {postList.map((post) => {
+      return (
+        <Link key={Math.random()} href={`/home/${post.post_id}`}>
+          <div className={`${styles.postLayout}`}>
+            <h2 className="text-xl">{post.title}</h2>
+            <p className="text-xs">{`By ${post.author_id}`}</p>
+            <p>{post.content}</p>
+          </div>
+        </Link>
+      );
+    })}
+
+  </>
+  );
+}

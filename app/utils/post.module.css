@@ -1,0 +1,14 @@
+.postLayout {
+  background: rgba(255, 255, 255, 1);
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.eachPostLayout {
+  background: rgba(255, 255, 255, 1);
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 1rem;
+}

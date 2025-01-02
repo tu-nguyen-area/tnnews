@@ -1,0 +1,17 @@
+.homeBody {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.homePost {
+  background: rgba(255, 255, 255, 1);
+}
+
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}

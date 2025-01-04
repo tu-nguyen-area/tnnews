@@ -43,6 +43,20 @@ export async function editPost(post_id: string, formData: FormData) {
     throw new Error('Failed to edit Post data.');
   }
 
+  revalidatePath(`/home/${post_id}`);
+  redirect(`/home/${post_id}`);
+}
+
+export async function deletePost(post_id: string) {
+  try {
+    await sql`
+      DELETE FROM "Post" WHERE "post_id" = ${`${post_id}`};
+    `;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to delete Post data.');
+  }
+
   revalidatePath('/home');
   redirect('/home');
 }

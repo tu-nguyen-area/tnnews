@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { fetchEachPost } from "@/app/lib/data";
 import styles from '@/app/utils/post.module.css';
+import { deletePost } from '@/app/lib/actions';
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
   const dataPost = await fetchEachPost(id);
+  const deletePostWithId = deletePost.bind(null, id);
 
   return (
   <>
@@ -17,7 +19,10 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
             <p className="text-xs">{`By ${post.name}`}</p>
             <p>{post.content}</p>
             <div className="flex justify-between">
-            <Link className="rounded-xl border-2 border-indigo-500 p-2 m-4" href="/home">Cancel</Link>
+              <Link className="rounded-xl border-2 border-indigo-500 p-2 m-4" href="/home">Cancel</Link>
+              <form action={deletePostWithId}>
+                <button type="submit" className="rounded-xl border-2 border-indigo-500 p-2 m-4">Delete</button>
+              </form>
               <Link className="rounded-xl border-2 border-indigo-500 p-2 m-4" href={`/home/${post.post_id}/edit`}>
                 <button>Edit</button>
               </Link>

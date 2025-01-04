@@ -11,7 +11,7 @@ export default async function Post() {
     {postList.map((post) => {
       return (
         <Link key={Math.random()} href={`/home/${post.post_id}`}>
-          <div className={`${styles.postLayout}`}>
+          <div className={`${styles.postLayout} break-normal`}>
             <h2 className="text-xl">{post.title}</h2>
             <p className="text-xs">{`By ${post.name}`}</p>
             <p>{post.content}</p>

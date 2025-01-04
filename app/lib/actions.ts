@@ -61,3 +61,20 @@ export async function deletePost(post_id: string) {
   revalidatePath('/', 'layout');
   redirect('/home');
 }
+
+export async function addComment(post_id: string, formData: FormData) {
+  const rawFormData = {
+    comment: formData.get('comment'),
+  };
+  try {
+    await sql`
+      UPDATE "Post"
+      SET "comments" = ${rawFormData.comment?.toString()}
+      WHERE "post_id" = ${`${post_id}`};
+    `;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to add Comment data.');
+  }
+  revalidatePath('/', 'layout');
+}

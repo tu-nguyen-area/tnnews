@@ -21,7 +21,7 @@ export async function createPost(formData: FormData) {
     throw new Error('Failed to create Post data.');
   }
 
-  revalidatePath('/home');
+  revalidatePath('/');
   redirect('/home');
 }
 
@@ -43,7 +43,8 @@ export async function editPost(post_id: string, formData: FormData) {
     throw new Error('Failed to edit Post data.');
   }
 
-  revalidatePath(`/home/${post_id}`);
+//  revalidatePath(`/home/${post_id}`);
+  revalidatePath('/');
   redirect(`/home/${post_id}`);
 }
 
@@ -57,6 +58,6 @@ export async function deletePost(post_id: string) {
     throw new Error('Failed to delete Post data.');
   }
 
-  revalidatePath('/home');
+  revalidatePath('/');
   redirect('/home');
 }

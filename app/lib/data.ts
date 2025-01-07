@@ -1,4 +1,33 @@
 import { sql } from '@vercel/postgres';
+//import { genSaltSync, hashSync } from 'bcrypt-ts';
+
+export async function getUser(email: string) {
+  try {
+    const data = await sql`
+      SELECT * FROM "User"
+      WHERE "email" = ${`${email}`};
+    `;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to get User data.');
+  }
+}
+
+//export async function createUser(email: string, password: string) {
+//  let salt = genSaltSync(10);
+//  let hash = hashSync(password, salt);
+//  try {
+//    await sql`
+//      INSERT INTO "User" (name, email, password)
+//      VALUES (${name}, ${email}, ${password});
+//    `;
+//  } catch (error) {
+//    console.error('Database Error:', error);
+//    throw new Error('Failed to create User.');
+//  }
+//}
 
 export async function fetchPost() {
   try {

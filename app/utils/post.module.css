@@ -1,9 +1,12 @@
 .postLayout {
-  background: rgba(255, 255, 255, 1);
   padding: 1rem;
-  margin: 2rem;
+  background: rgba(255, 255, 255, 1);
   border-radius: 1rem;
   overflow: hidden;
+}
+
+.postLink {
+  margin: 2rem;
 }
 
 .eachPostLayout {

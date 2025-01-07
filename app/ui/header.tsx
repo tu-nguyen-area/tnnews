@@ -5,7 +5,7 @@ export default function Header() {
   <>
 
     <div className="flex justify-between p-1 bg-white">
-      <Link href="/home">Home</Link>
+      <Link href="/">Home</Link>
       <p>tudellg33579@protonmail.com</p>
     </div>
 

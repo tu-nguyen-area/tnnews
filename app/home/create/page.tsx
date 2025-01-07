@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import styles from '@/app/utils/post.module.css';
@@ -15,7 +15,7 @@ function Submit() {
 }
 
 export default function Page() {
-  
+
   return (
   <>
 

@@ -35,8 +35,8 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
             <label>{`Comments By ${post.name}`}</label>
             <p className="m-4">{post.comments}</p>
             <form action={addCommentWithId}>
-              <input name="comment" className="rounded-md w-full m-2 border-2 border-indigo-500">
-              </input>
+              <textarea name="comment" className="rounded-md w-full m-2 border-2 border-indigo-500">
+              </textarea>
               <button className="rounded-xl border-2 border-indigo-500 p-2 m-2" type="submit">Send comments</button>
             </form>
           </div>

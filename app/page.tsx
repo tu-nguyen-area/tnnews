@@ -9,8 +9,11 @@ export default async function Page() {
     <section>
       <div className={`${styles.homeHeader}`}>
         <h1>Public Feed</h1>
-        <Link href="/">Home</Link>
+        <Link href="/home">Home</Link>
         <Link href="/home/create">New post</Link>
+      </div>
+      <div className="flex justify-center p-3">
+        <Link href="/signin">Sign In</Link>
       </div>
       <Post />
     </section>

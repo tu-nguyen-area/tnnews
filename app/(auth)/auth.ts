@@ -20,9 +20,9 @@ export const {
     Credentials({
       credentials: {},
       async authorize({ email, password }: any) {
-        let users = await getUser(email);
+        const users = await getUser(email);
         if(users.length === 0) return null;
-        let passwordsMatch = await compare(password, users[0].password!);
+        const passwordsMatch = await compare(password, users[0].password!);
         if(passwordsMatch) return users[0] as any;
       },
     }),

@@ -5,7 +5,7 @@ export default function Footer() {
       <section>
         <p>tudellg33579@gmail.com</p>
         <p>Privacy Policy | Terms of Use</p>
-        <p>&copy; 2024 TN News Project. All rights reserved.</p>
+        <p>&copy; 2025 TN News Project. All rights reserved.</p>
       </section>
     </footer>
   </>

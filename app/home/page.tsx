@@ -11,23 +11,24 @@ export default async function Page() {
 
     <section>
       <div className={`${styles.homeHeader}`}>
-        <h1>Public Feed</h1>
-        <Link href="/home">Home</Link>
-        <Link href="/home/create">New post</Link>
+          <Link className="rounded-xl bg-white border-2 border-indigo-500 p-2 sm:ml-4" href="/home/create">New post</Link>
+          <form
+            action={async () => {
+              'use server';
+              await signOut();
+            }}
+          >
+            <div>
+              <label className="pr-1">{session?.user?.email}</label>
+              <button className="rounded-xl bg-white border-2 border-indigo-500 p-2 sm:mr-4" type="submit">
+                Sign Out
+              </button>
+            </div>
+          </form>
       </div>
-        <form
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
-        >
-          <div className="flex justify-center p-3">
-          <label className="pr-3">({session?.user?.email})</label>
-          <button type="submit">
-            Sign Out
-          </button>
-          </div>
-        </form>
+      <div className="flex justify-center">
+        <h1>Public Feed</h1>
+      </div>
       <Post />
     </section>
 

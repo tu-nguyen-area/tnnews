@@ -14,7 +14,10 @@ export async function createPost(formData: FormData) {
   //const data = await sql`
   await sql`
     INSERT INTO "Post" (title, content, published, author_id)
-    VALUES (${rawFormData.title?.toString()}, ${rawFormData.content?.toString()}, TRUE, ${rawFormData.author_id?.toString()})
+    VALUES (${rawFormData.title?.toString()},
+    ${rawFormData.content?.toString()},
+    TRUE,
+    ${rawFormData.author_id?.toString()})
   `;
   } catch (error) {
     console.error('Database Error:', error);
@@ -28,14 +31,15 @@ export async function createPost(formData: FormData) {
 export async function editPost(post_id: string, formData: FormData) {
   const rawFormData = {
     title: formData.get('title'),
-    author_id: formData.get('author_id'),
     content: formData.get('content'),
   };
   try {
   //const data = await sql`
   await sql`
     UPDATE "Post"
-    SET "title" = ${rawFormData.title?.toString()}, "content" = ${rawFormData.content?.toString()}, "published" = TRUE
+    SET "title" = ${rawFormData.title?.toString()},
+    "content" = ${rawFormData.content?.toString()},
+    "published" = TRUE
     WHERE "post_id" = ${`${post_id}`};
   `;
   } catch (error) {

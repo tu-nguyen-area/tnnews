@@ -16,20 +16,19 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     return (
     <div key={Math.random()} className={`${styles.eachPostLayout}`}>
       <form action={editPostWithId}>
-        <div>
+        <div className="m-2">
           <label>Title</label>
-          <input name="title" defaultValue={post.title} className="rounded-md w-full m-2 border-2 border-indigo-500" required></input>
+          <input name="title" defaultValue={post.title} className="rounded-md w-full border-2 border-indigo-500 p-1" required></input>
         </div>
-        <div>
-          <input name="author_id" type="hidden" value="47d555f3-72ce-4df1-aa3f-912567d3556b"></input>
+        <div className="m-5">
         </div>
-        <div>
+        <div className="m-2">
           <label>Content</label>
-          <textarea name="content" defaultValue={post.content} className="rounded-lg w-full m-2 border-2 border-indigo-500" required></textarea>
+          <textarea name="content" defaultValue={post.content} className="rounded-lg w-full border-2 border-indigo-500 p-1" required></textarea>
         </div>
         <div className="flex justify-between">
           <Link className="rounded-xl border-2 border-indigo-500 p-2 m-2" href={`/home/${post.post_id}`}>Cancel</Link>
-          <button className="rounded-xl border-2 border-indigo-500 p-2 m-2" type="submit">Confirm</button>
+          <button className="rounded-xl border-2 border-indigo-500 p-2 m-2 w-20 text-center" type="submit">Confirm</button>
         </div>
       </form>
     </div>

@@ -58,6 +58,20 @@ export async function fetchEachPost(post_id: string) {
   }
 }
 
+export async function fetchUser(email: any) {
+  try {
+    const data = await sql`
+      SELECT "user_id" FROM "User"
+      WHERE "email" = ${`${email}`};
+    `;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to get User data.');
+  }
+}
+
 //export async function fetchPost() {
 //  try {
 //    const data = await sql`SELECT * FROM "Post"`;

@@ -8,12 +8,8 @@ export default async function Page() {
 
     <section>
       <div className={`${styles.homeHeader}`}>
-        <h1>Public Feed</h1>
-        <Link href="/home">Home</Link>
-        <Link href="/home/create">New post</Link>
-      </div>
-      <div className="flex justify-center p-3">
-        <Link href="/signin">Sign In</Link>
+        <h1 className="p-2 ml-4 mt-1">Public Feed</h1>
+        <Link className="rounded-xl border-2 border-indigo-500 p-2 bg-white" href="/signin">Sign In</Link>
       </div>
       <Post />
     </section>

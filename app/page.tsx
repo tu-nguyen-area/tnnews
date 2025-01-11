@@ -9,7 +9,7 @@ export default async function Page() {
     <section>
       <div className={`${styles.homeHeader}`}>
         <h1 className="p-2 ml-4 mt-1">Public Feed</h1>
-        <Link className="rounded-xl border-2 border-indigo-500 p-2 bg-white" href="/signin">Sign In</Link>
+        <Link className="rounded-xl border-2 border-indigo-500 p-2 mr-4 bg-white w-20 text-center" href="/signin">Sign In</Link>
       </div>
       <Post />
     </section>

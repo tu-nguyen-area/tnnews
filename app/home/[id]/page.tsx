@@ -19,7 +19,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
           <div className={`${styles.eachPostLayout} break-words`}>
             <h1 className="text-xl">{post.title}</h1>
             <p className="text-xs">{`By ${post.name}`}</p>
-            <p>{post.content}</p>
+            <p className="whitespace-pre-line md:whitespace-pre-wrap">{post.content}</p>
             <div className="flex justify-between m-3 mt-12">
               <Link className="rounded-xl border-2 border-indigo-500 p-2 w-18" href="/home">Cancel</Link>
               <form action={deletePostWithId}>

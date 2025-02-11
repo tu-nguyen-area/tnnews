@@ -9,6 +9,12 @@ interface ExtendedSession extends Session {
   user: User;
 }
 
+declare module "next-auth" {
+  interface User {
+    user_id?: string | null;
+  }
+}
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -20,17 +26,24 @@ export const {
     Credentials({
       credentials: {},
       async authorize({ email, password }: any) {
-        const users = await getUser(email);
-        if(users.length === 0) return null;
-        const passwordsMatch = await compare(password, users[0].password!);
-        if(passwordsMatch) return users[0] as any;
+        if(email !== "tu@gmail.com") {
+          const users = await getUser(email);
+          if(users.length === 0) return null;
+          const passwordsMatch = await compare(password, users[0].password!);
+          if(passwordsMatch) return users[0] as any;
+        } else {
+          const managers = await getUser(email);
+          if(managers.length === 0) return null;
+          const passwordsManagerMatch = await compare(password, managers[0].password!);
+          if(passwordsManagerMatch) return managers[0] as any;
+        }
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if(user) {
-        token.id = user.id;
+        token.id = user.user_id;
       }
 
       return token;

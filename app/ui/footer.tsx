@@ -1,6 +1,7 @@
 export default function Footer() {
   return (
   <>
+
     <footer className="flex justify-center bg-white p-6">
       <section>
         <p>tudellg33579@gmail.com</p>
@@ -8,6 +9,7 @@ export default function Footer() {
         <p>&copy; 2025 TN News Project. All rights reserved.</p>
       </section>
     </footer>
+
   </>
   );
 }

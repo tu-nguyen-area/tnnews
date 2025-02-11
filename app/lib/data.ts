@@ -1,3 +1,5 @@
+'use server'
+
 import { sql } from '@vercel/postgres';
 //import { genSaltSync, hashSync } from 'bcrypt-ts';
 
@@ -33,7 +35,23 @@ export async function fetchPost() {
   try {
     const data = await sql`
       SELECT * FROM "Post" JOIN "User"
-      ON "Post"."author_id" = "User"."user_id";
+      ON "Post"."author_id" = "User"."user_id"
+      WHERE "Post"."published" = 'TRUE';
+    `;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch Post data.');
+  }
+}
+
+export async function fetchProfile(email: any) {
+  try {
+    const data = await sql`
+      SELECT * FROM "Post" JOIN "User"
+      ON "Post"."author_id" = "User"."user_id"
+      WHERE "User"."email" = ${email};
     `;
 
     return data.rows;

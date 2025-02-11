@@ -30,7 +30,7 @@ export default function CreateForm({ value }: { value: any}) {
         </div>
         <div className="m-2">
           <label>Content</label>
-          <textarea name="content" className="rounded-lg w-full border-2 border-indigo-500 p-1" required></textarea>
+          <textarea name="content" className="rounded-lg w-full h-64 md:h-96 border-2 border-indigo-500 p-1" required></textarea>
         </div>
         <div className="flex justify-between">
           <Link className="rounded-xl border-2 border-indigo-500 p-2 m-2 w-20 text-center" href="/home">Cancel</Link>

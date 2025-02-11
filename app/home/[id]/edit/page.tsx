@@ -24,7 +24,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         </div>
         <div className="m-2">
           <label>Content</label>
-          <textarea name="content" defaultValue={post.content} className="rounded-lg w-full border-2 border-indigo-500 p-1" required></textarea>
+          <textarea name="content" defaultValue={post.content} className="rounded-lg w-full h-64 md:h-96 border-2 border-indigo-500 p-1" required></textarea>
         </div>
         <div className="flex justify-between">
           <Link className="rounded-xl border-2 border-indigo-500 p-2 m-2" href={`/home/${post.post_id}`}>Cancel</Link>

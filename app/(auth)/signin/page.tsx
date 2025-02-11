@@ -46,12 +46,13 @@ export default function Page() {
     <AuthForm action={handleSubmit} defaultEmail={email} defaultPassword={password}>
       <div className="flex justify-center p-5">
         <button
-          className="rounded-xl border-2 hover:border-rose-600 w-1/3 sm:w-1/5 hover:scale-125 transition bg-white hover:bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500
-          to-90% hover:text-white" type="submit"
+          className="rounded-xl border-2 hover:border-rose-600 w-1/3 sm:w-1/5 hover:scale-125 transition bg-white hover:bg-gradient-to-r from-indigo-500 from-10%
+          via-sky-500 via-30% to-emerald-500 to-90% hover:text-white" type="submit"
         >
           Sign In</button>
       </div>
     </AuthForm>
+
     <div className="p-5">
       <p>Test User Account: test@gmail.com</p>
       <p>Password: admin123</p>

@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import styles from '@/app/utils/post.module.css';
-import { fetchPost } from '@/app/lib/data';
+import { fetchProfile } from '@/app/lib/data';
+import { auth } from '@/app/(auth)/auth';
 
 export default async function Post() {
-  const postList = await fetchPost();
+  const session = await auth();
+  const email = session?.user?.email;
+  const postList = await fetchProfile(email);
 
   return (
   <>

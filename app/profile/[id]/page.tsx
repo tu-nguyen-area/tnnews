@@ -1,4 +1,4 @@
-import Post from '@/app/ui/post';
+import Profile from '@/app/ui/profile';
 import styles from '@/app/utils/home.module.css';
 import Link from 'next/link';
 import { signOut, auth } from '@/app/(auth)/auth';
@@ -19,9 +19,7 @@ export default async function Page() {
             }}
           >
             <div>
-              <Link href={`/profile/${session?.user?.id}`}>
-                <label className="pr-1">{session?.user?.email}</label>
-              </Link>
+              <label className="pr-1">{session?.user?.email}</label>
               <button className="rounded-xl bg-white border-2 border-indigo-500 p-2 sm:mr-4" type="submit">
                 Sign Out
               </button>
@@ -31,7 +29,7 @@ export default async function Page() {
       <div className="flex justify-center">
         <h1>Public Feed</h1>
       </div>
-      <Post />
+      <Profile />
     </section>
 
   </>

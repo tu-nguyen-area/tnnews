@@ -1,7 +1,9 @@
 'use server'
 
-import { sql } from '@vercel/postgres';
 //import { genSaltSync, hashSync } from 'bcrypt-ts';
+import { neon } from "@neondatabase/serverless";
+
+const sql = neon(process.env.DATABASE_URL!);
 
 export async function getUser(email: string) {
   try {
@@ -10,7 +12,7 @@ export async function getUser(email: string) {
       WHERE "email" = ${`${email}`};
     `;
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to get User data.');
@@ -39,7 +41,7 @@ export async function fetchPost() {
       WHERE "Post"."published" = 'TRUE';
     `;
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch Post data.');
@@ -54,7 +56,7 @@ export async function fetchProfile(email: any) {
       WHERE "User"."email" = ${email};
     `;
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch Post data.');
@@ -69,7 +71,7 @@ export async function fetchEachPost(post_id: string) {
       WHERE "Post"."post_id" = ${`${post_id}`};
     `;
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch Each Post data.');
@@ -83,7 +85,7 @@ export async function fetchUser(email: any) {
       WHERE "email" = ${`${email}`};
     `;
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to get User data.');

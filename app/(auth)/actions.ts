@@ -1,7 +1,5 @@
 'use server';
 
-//import { getUser } from '@/app/lib/data';
-
 import { signIn } from '@/app/(auth)/auth';
 
 export interface SigninActionState {

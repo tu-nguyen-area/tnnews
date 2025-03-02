@@ -1,9 +1,9 @@
-import { NextAuthConfig } from 'next-auth';
+import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
   pages: {
-    signIn: "/signin",
-    newUser: "/home",
+    signIn: '/signin',
+    newUser: '/home',
   },
   providers: [],
   callbacks: {
@@ -15,30 +15,19 @@ export const authConfig = {
       const isOnSignIn = nextUrl.pathname.startsWith("/signin");
 
       if(isSignedIn && (isOnSignIn || isOnSignUp)) {
-        return Response.redirect(new URL("/home", nextUrl));
-      }
-
-      if(isOnProfile) {
-        if(auth?.user?.email == "tu@gmail.com") return true;
-        return false;
+        return Response.redirect(new URL('/home', nextUrl as unknown as URL));
       }
 
       if(isOnSignUp || isOnSignIn) {
         return true;
       }
-
-      if(isOnHome) {
+      
+      if(isOnHome || isOnProfile) {
         if(isSignedIn) return true;
           return false;
       }
-
-      if(isOnProfile) {
-        if(isSignedIn) return true;
-          return false;
-      }
-
       if(isSignedIn) {
-        return Response.redirect(new URL("/home", nextUrl));
+        return Response.redirect(new URL('/home', nextUrl as unknown as URL));
       }
 
       return true;

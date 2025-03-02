@@ -1,4 +1,4 @@
-import SectionTwo from '@/app/ui/home/section-two';
+import SectionThree from '@/app/ui/home/section-three';
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -7,9 +7,9 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   return (
   <>
 
-  <main>
-    <SectionTwo id={id}/>
-  </main>
+  <section>
+    <SectionThree id={id} />
+  </section>
 
   </>
   );

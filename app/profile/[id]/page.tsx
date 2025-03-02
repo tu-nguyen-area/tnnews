@@ -1,36 +1,24 @@
-import Profile from '@/app/ui/profile';
-import styles from '@/app/utils/home.module.css';
+import SectionFive from '@/app/ui/home/section-five';
+import { EditPost, DeletePost } from '@/app/ui/home/buttons';
 import Link from 'next/link';
-import { signOut, auth } from '@/app/(auth)/auth';
 
-export default async function Page() {
-  const session = await auth();
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
 
   return (
   <>
 
-    <section>
-      <div className={`${styles.homeHeader}`}>
-          <Link className="rounded-xl bg-white border-2 border-indigo-500 p-2 sm:ml-4" href="/home/create">New post</Link>
-          <form
-            action={async () => {
-              'use server';
-              await signOut();
-            }}
-          >
-            <div>
-              <label className="pr-1">{session?.user?.email}</label>
-              <button className="rounded-xl bg-white border-2 border-indigo-500 p-2 sm:mr-4" type="submit">
-                Sign Out
-              </button>
-            </div>
-          </form>
-      </div>
-      <div className="flex justify-center">
-        <h1>Public Feed</h1>
-      </div>
-      <Profile />
-    </section>
+  <main>
+    <SectionFive id={id}/>
+    <div className="grid gap-6 md:flex md:justify-around m-6 md:m-12">
+      <Link href="/profile">
+        <button className="bg-black dark:bg-white rounded-lg text-white dark:text-black p-2 w-full md:w-36 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white">Back</button>
+      </Link>
+      <DeletePost id={id} />
+      <EditPost id={id} />
+    </div>
+  </main>
 
   </>
   );

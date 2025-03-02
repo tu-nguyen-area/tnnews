@@ -1,67 +1,44 @@
 'use client';
 
+import { AuthForm } from '@/components/custom/auth-form';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
-
-import { AuthForm } from '@/components/auth-form';
-
-import { signin, SigninActionState } from '@/app/(auth)/actions';
+import { signin, type SigninActionState } from '@/app/(auth)/actions';
 
 export default function Page() {
   const router = useRouter();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const [state, formAction] = useActionState<SigninActionState, FormData>(
-    signin,
-    {
-      status: "idle",
-    },
+    signin, { status: 'idle', },
   );
 
   useEffect(() => {
-    if (state.status === "failed") {
-      console.log("Invalid credentials!");
-    } else if (state.status === "invalid_data") {
-      console.log("Failed validating your submission!");
-    } else if (state.status === "success") {
-      console.log("Success validating your submission!")
+    if(state.status === "failed") {
+      alert("Invalid credentials!");
+    } else if(state.status === "invalid_data") {
+      alert("Failed validating your submission!");
+    } else if(state.status === "success") {
+      setIsSuccessful(true);
       router.refresh();
     }
   }, [state.status, router]);
 
-  const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get("email") as string);
+  function handleSubmit(formData: FormData) {
+    setEmail(formData.get('email') as string);
     formAction(formData);
-  };
-
-  function SetValue() {
-    setEmail("test@gmail.com");
-    setPassword("admin123");
   };
 
   return (
   <>
 
-    <AuthForm action={handleSubmit} defaultEmail={email} defaultPassword={password}>
-      <div className="flex justify-center p-5">
-        <button
-          className="rounded-xl border-2 hover:border-rose-600 w-1/3 sm:w-1/5 bg-white hover:bg-gradient-to-r from-indigo-500 from-10%
-          via-sky-500 via-30% to-emerald-500 to-90% hover:text-white" type="submit"
-        >
-          Sign In</button>
+  <section>
+    <AuthForm action={handleSubmit} defaultEmail={email} isSuccessful={isSuccessful} url="/signup" content="Don&#39;t have an account? Sign up for free.">
+      <div className="flex justify-center">
+        <h1 className="md:p-6 text-center text-3xl md:text-5xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent w-fit">Sign In</h1>
       </div>
     </AuthForm>
-
-    <div className="p-5">
-      <p>Test User Account: test@gmail.com</p>
-      <p>Password: admin123</p>
-      <button onClick={SetValue}
-        className="rounded-xl border-2 hover:border-rose-600 w-1/3 sm:w-1/5 bg-white hover:bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500
-        to-90% hover:text-white"
-      >
-        Set Value</button>
-    </div>
+  </section>
 
   </>
   );

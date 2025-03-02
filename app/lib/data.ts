@@ -1,7 +1,7 @@
-'use server'
+'use server';
 
-//import { genSaltSync, hashSync } from 'bcrypt-ts';
-import { neon } from "@neondatabase/serverless";
+import { genSaltSync, hashSync } from 'bcrypt-ts';
+import { neon } from '@neondatabase/serverless';
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -15,51 +15,55 @@ export async function getUser(email: string) {
     return data;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to get User data.');
+    throw new Error('Failed to fetch user data.');
   }
 }
 
-//export async function createUser(email: string, password: string) {
-//  let salt = genSaltSync(10);
-//  let hash = hashSync(password, salt);
-//  try {
-//    await sql`
-//      INSERT INTO "User" (name, email, password)
-//      VALUES (${name}, ${email}, ${password});
-//    `;
-//  } catch (error) {
-//    console.error('Database Error:', error);
-//    throw new Error('Failed to create User.');
-//  }
-//}
+export async function createUser(email: string, password: string) {
+  const salt = genSaltSync(10);
+  const hash = hashSync(password, salt);
+  const name = email;
+
+  try {
+    await sql`
+      INSERT INTO "User" (name, email, password)
+      VALUES(${name}, ${email}, ${hash});
+    `;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to create user.');
+  }
+}
 
 export async function fetchPost() {
   try {
     const data = await sql`
       SELECT * FROM "Post" JOIN "User"
-      ON "Post"."author_id" = "User"."user_id"
-      WHERE "Post"."published" = 'TRUE';
+      ON "Post"."author_id" = "User"."id"
+      WHERE "Post"."published" = 'TRUE'
+      ORDER BY "date" DESC;
     `;
 
     return data;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch Post data.');
+    throw new Error('Failed to fetch post data.');
   }
 }
 
-export async function fetchProfile(email: any) {
+export async function fetchPostProfile(id: string) {
   try {
     const data = await sql`
       SELECT * FROM "Post" JOIN "User"
-      ON "Post"."author_id" = "User"."user_id"
-      WHERE "User"."email" = ${email};
+      ON "Post"."author_id" = "User"."id"
+      WHERE "Post"."author_id" = ${`${id}`}
+      ORDER BY "date" DESC;
     `;
 
     return data;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch Post data.');
+    throw new Error('Failed to fetch profile data');
   }
 }
 
@@ -67,50 +71,13 @@ export async function fetchEachPost(post_id: string) {
   try {
     const data = await sql`
       SELECT * FROM "Post" JOIN "User"
-      ON "Post"."author_id" = "User"."user_id"
+      ON "Post"."author_id" = "User"."id"
       WHERE "Post"."post_id" = ${`${post_id}`};
     `;
 
     return data;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch Each Post data.');
+    throw new Error('Failed to fetch each post data.');
   }
 }
-
-export async function fetchUser(email: any) {
-  try {
-    const data = await sql`
-      SELECT "user_id" FROM "User"
-      WHERE "email" = ${`${email}`};
-    `;
-
-    return data;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to get User data.');
-  }
-}
-
-//export async function fetchPost() {
-//  try {
-//    const data = await sql`SELECT * FROM "Post"`;
-
-//    return data.rows;
-//  } catch (error) {
-//    console.error('Database Error:', error);
-//    throw new Error('Failed to fetch Post data.');
-//  }
-//}
-
-//export async function fetchAuthor(author_id: string) {
-//  try {
-//    const data = await sql`
-//      SELECT "User"."name" FROM "User"
-//      WHERE "User"."user_id" = ${`${author_id}`};
-//    `;
-//  } catch (error) {
-//    console.error('Database Error:', error);
-//    throw new Error('Failed to fetch Author data.');
-//  }
-//}

@@ -48,7 +48,7 @@ export async function createPost(prevState: State, formData: FormData) {
     };
   }
 
-  const { title, author_id, content } = validatedFields.data;
+  const { title, author_id, content, author_name, published } = validatedFields.data;
   const date = new Date().toISOString().split('T')[0];
 
   try {

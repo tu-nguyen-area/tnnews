@@ -12,7 +12,7 @@ export function EachPost({
   return (
   <>
 
-  <section className={`${styles.postSection} bg-orange-100 rounded-lg break-words`}>
+  <section className={`${styles.postSection} bg-orange-100 dark:bg-neutral-900 dark:text-white rounded-lg break-words`}>
     <div className={`${styles.postLayout}`}>
       <h2 className="text-xl">{title}</h2>
       <p className="text-sm">{`By ${name}`}</p>

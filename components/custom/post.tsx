@@ -15,7 +15,7 @@ export function Post({
   return (
   <>
 
-  <section className={`${styles.postSection} bg-orange-100 rounded-lg border-2 break-words hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white`}>
+  <section className={`${styles.postSection} bg-orange-100 rounded-lg border-2 break-words hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white dark:text-white dark:bg-neutral-900`}>
     <Link href={`${post_id}`}>
       <div className={`${styles.postLayout} truncate`}>
         <h2 className="text-xl text-center">{title}</h2>

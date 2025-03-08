@@ -48,7 +48,7 @@ export default function EditForm({ post_id, title, author_id, author_name, publi
         <label className="text-xl bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text font-bold text-transparent">Content</label>
         <textarea name="content" defaultValue={content} placeholder="Content..." className="rounded-lg w-full h-64 md:h-96 border-2 p-2" required></textarea>
       </div>
-      <div className="grid gap-6 md:flex md:justify-around my-6 md:my-12">
+      <div className="grid gap-6 md:flex md:justify-between my-6 md:my-12">
         <Link href={`/profile/${post_id}`}>
           <button className="bg-black dark:bg-white rounded-lg text-white dark:text-black p-2 w-full md:w-36 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white">Cancel</button>
         </Link>

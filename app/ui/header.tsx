@@ -9,7 +9,7 @@ export default function Header() {
       <Link href="/">
         TN NEWS
       </Link>
-      <p>tudellg33579@protonmail.com</p>
+      <p>tu-nguyen@tu-nguyen.com</p>
     </section>
   </header>
 

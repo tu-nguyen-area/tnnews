@@ -8,7 +8,7 @@ function Submit({ isSuccessful }: { isSuccessful: boolean }) {
   const { pending } = useFormStatus();
 
   return (
-    <button className="md:mx-6 bg-black dark:bg-white rounded-lg text-white dark:text-black w-full md:w-48 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white" type="submit" disabled={pending|| isSuccessful}>
+    <button className="my-8 md:mr-16 bg-black dark:bg-white rounded-lg text-white dark:text-black w-full md:w-48 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white" type="submit" disabled={pending|| isSuccessful}>
       {pending ? "Confirming..." : "Confirm"}
     </button>
   );
@@ -39,11 +39,10 @@ export function AuthForm({ action, children, defaultEmail = '', isSuccessful, ur
 
       </div>
       <div className="px-6">
-      <Submit isSuccessful={isSuccessful}/>
-      <Link href="/">
-        <button className="my-8 md:mx-6 bg-black dark:bg-white rounded-lg text-white dark:text-black w-full md:w-48 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white">Cancel</button>
-      </Link>
-      
+        <Submit isSuccessful={isSuccessful}/>
+        <Link href="/" className="md:ml-16">
+          <button className="my-8 bg-black dark:bg-white rounded-lg text-white dark:text-black w-full md:w-48 h-10 hover:bg-gradient-to-r hover:from-red-500 hover:via-orange-500 hover:to-yellow-500 hover:text-white">Cancel</button>
+        </Link>
       </div>
       <Link href={url}><h1 className="text-center m-6">{content}</h1></Link>
       

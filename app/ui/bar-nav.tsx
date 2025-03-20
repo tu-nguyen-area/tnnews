@@ -32,7 +32,7 @@ export default function BarNav() {
         <Link href="/">
           TN NEWS
         </Link>
-        <p>tudellg33579@protonmail.com</p>
+        <p>tu-nguyen@tu-nguyen.org</p>
       </div>
       <div className="grid md:flex justify-center fixed top-8 z-20 bg-white dark:bg-black w-full h-full md:h-18 overflow-auto">
       {links.map((link) => {
